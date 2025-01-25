@@ -189,7 +189,7 @@ public class Consulta extends javax.swing.JFrame {
         pausa.start();
         
         Funciones f = new Funciones();        
-        f.mostrarMensaje("¡Sin consultas por hoy! Descanse, mi doc.");
+        f.mostrarMensaje("¡Sin consultas por hoy!");
     }
     
     //Obtiene la extensión de un archivo
@@ -252,72 +252,79 @@ public class Consulta extends javax.swing.JFrame {
     
     //Genera la consulta en la BD
     private void registrarConsulta() {
-        Funciones f = new Funciones();                
+    Funciones f = new Funciones();                
+    
+    int paciente = id_paciente.get(cboPacientes.getSelectedIndex());   
+    int cita = id_cita.get(cboPacientes.getSelectedIndex());
+    
+    try {
+        Connection conexion = DriverManager.getConnection(Funciones.bd_url, Funciones.bd_usuario, Funciones.bd_password);
+        String consulta = "SELECT usuario FROM pacientes WHERE id = ?;";
+        PreparedStatement sentencia = conexion.prepareStatement(consulta);
+        sentencia.setInt(1, paciente);
+        ResultSet resultado = sentencia.executeQuery();
         
-        int paciente = id_paciente.get(cboPacientes.getSelectedIndex());   
-        int cita = id_cita.get(cboPacientes.getSelectedIndex());
+        String nombre = "";
+        int c = 0;
         
-        try{
-            Connection conexion = DriverManager.getConnection(Funciones.bd_url, Funciones.bd_usuario, Funciones.bd_password);
-            String consulta = "SELECT usuario FROM pacientes WHERE id = ?;";
-            PreparedStatement sentencia = conexion.prepareStatement(consulta);
-            sentencia.setInt(1, paciente);
-            ResultSet resultado = sentencia.executeQuery();
-            
-            String nombre = "";
-            int c = 0;
-            
-            //Obtiene el historial de CONSULTAS del paciente                
-            while (resultado.next()) {
-                nombre = resultado.getString("usuario"); 
-                c++;
-            }
+        // Obtiene el historial de CONSULTAS del paciente                
+        while (resultado.next()) {
+            nombre = resultado.getString("usuario"); 
+            c++;
+        }
 
-            resultado.close();
-            sentencia.close();
-            
-            //Si no hay resultados arrojados por la consulta
-            if(c < 1) {
-                f.mostrarMensaje("¡El ID ingresado no existe! Ingrese un paciente válido.");
-                return;
-            }
-            
-            //Si no se ha elegido un archivo para subir
-            String direccion = copiarArchivo(nombre);    
-            if( direccion.isEmpty() ) {
-                f.mostrarMensaje("¡Archivo no seleccionado!");
-                return;
-            }
+        resultado.close();
+        sentencia.close();
+        
+        // Si no hay resultados arrojados por la consulta
+        if (c < 1) {
+            f.mostrarMensaje("¡El ID ingresado no existe! Ingrese un paciente válido.");
+            return;
+        }
+        
+        // Si no se ha elegido un archivo para subir
+        String direccion = "";
+        if (archivoSeleccionado == JFileChooser.APPROVE_OPTION) {
+            direccion = copiarArchivo(nombre);
+        }
+        
+        // SE CREA UNA NUEVA CONSULTA SOBRE LA CITA ELEGIDA
+        consulta = "INSERT INTO consultas (id, id_paciente, tratamientos, diagnostico, observaciones, medicamentos,"
+                + " archivos, id_cita) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);";
+        sentencia = conexion.prepareStatement(consulta);
                     
-            // SE CREA UNA NUEVA CONSULTA SOBRE LA CITA ELEGIDA
-            consulta = "INSERT INTO consultas (id, id_paciente, tratamientos, diagnostico, observaciones, medicamentos,"
-                    + " archivos, id_cita) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);";
-            sentencia = conexion.prepareStatement(consulta);
-                        
-            sentencia.setInt(1, paciente);
-            sentencia.setString(2,txtTratamientos.getText());
-            sentencia.setString(3,txtDiagnostico.getText());
-            sentencia.setString(4,txtObservaciones.getText());
-            sentencia.setString(5,txtMedicamentos.getText());
-            sentencia.setString(6, direccion); 
-            sentencia.setInt(7, cita);            
-            sentencia.executeUpdate();
-            sentencia.close();
-            
-            // Se actualiza el estado de CONSULTADA en la tabla CITAS
-            consulta = "UPDATE citas SET consultada = 'Si' WHERE id = ?;";
-            sentencia = conexion.prepareStatement(consulta);
-            
-            sentencia.setInt(1, cita);            
-            sentencia.executeUpdate();
-            sentencia.close();
-            
-            f.mostrarMensaje("¡Consulta registrada correctamente!");
-        } catch(SQLException e) {
+        sentencia.setInt(1, paciente);
+        sentencia.setString(2, txtTratamientos.getText());
+        sentencia.setString(3, txtDiagnostico.getText());
+        sentencia.setString(4, txtObservaciones.getText());
+        sentencia.setString(5, txtMedicamentos.getText());
+
+        // Si no se seleccionó un archivo, establece NULL
+        if (direccion.isEmpty()) {
+            sentencia.setNull(6, java.sql.Types.VARCHAR);
+        } else {
+            sentencia.setString(6, direccion);
+        }
+        
+        sentencia.setInt(7, cita);            
+        sentencia.executeUpdate();
+        sentencia.close();
+        
+        // Se actualiza el estado de CONSULTADA en la tabla CITAS
+        consulta = "UPDATE citas SET consultada = 'Si' WHERE id = ?;";
+        sentencia = conexion.prepareStatement(consulta);
+        
+        sentencia.setInt(1, cita);            
+        sentencia.executeUpdate();
+        sentencia.close();
+        
+        f.mostrarMensaje("¡Consulta registrada correctamente!");
+        } catch (SQLException e) {
             f.mostrarMensaje("¡Algo falló! Intente nuevamente.");
+            e.printStackTrace(); // Para depuración
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
