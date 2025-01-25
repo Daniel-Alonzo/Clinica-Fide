@@ -209,7 +209,6 @@ public class CompletarInfo extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtAlergias = new javax.swing.JTextField();
         cboTipoSangre = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtEstatura = new javax.swing.JTextField();
@@ -217,6 +216,8 @@ public class CompletarInfo extends javax.swing.JFrame {
         txtPeso = new javax.swing.JTextField();
         btnGuardar = new javax.swing.JButton();
         btnMute = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtAlergias = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -258,24 +259,6 @@ public class CompletarInfo extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Alergias:");
 
-        txtAlergias.setForeground(new java.awt.Color(153, 153, 153));
-        txtAlergias.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtAlergias.setText("Ninguna");
-        txtAlergias.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        txtAlergias.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                txtAlergiasFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtAlergiasFocusLost(evt);
-            }
-        });
-        txtAlergias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                txtAlergiasMouseEntered(evt);
-            }
-        });
-
         cboTipoSangre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 cboTipoSangreMouseEntered(evt);
@@ -293,7 +276,7 @@ public class CompletarInfo extends javax.swing.JFrame {
         txtEstatura.setForeground(new java.awt.Color(153, 153, 153));
         txtEstatura.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtEstatura.setText("1.83");
-        txtEstatura.setActionCommand(null);
+        txtEstatura.setActionCommand("null");
         txtEstatura.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtEstaturaFocusGained(evt);
@@ -365,35 +348,57 @@ public class CompletarInfo extends javax.swing.JFrame {
             }
         });
 
+        txtAlergias.setColumns(20);
+        txtAlergias.setLineWrap(true);
+        txtAlergias.setRows(5);
+        txtAlergias.setWrapStyleWord(true);
+        txtAlergias.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAlergiasFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAlergiasFocusLost(evt);
+            }
+        });
+        txtAlergias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtAlergiasMouseEntered(evt);
+            }
+        });
+        jScrollPane1.setViewportView(txtAlergias);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1)
+                            .addComponent(cboTipoSangre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(btnGuardar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel1)
-                                .addComponent(txtAlergias)
-                                .addComponent(txtEstatura)
-                                .addComponent(txtPeso)
-                                .addComponent(cboTipoSangre, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(btnMute)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCerrarSesion)))
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(btnGuardar))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(txtEstatura, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(txtPeso))))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(227, Short.MAX_VALUE)
+                .addComponent(btnMute)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCerrarSesion)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -413,7 +418,7 @@ public class CompletarInfo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtAlergias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -508,20 +513,6 @@ public class CompletarInfo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPesoActionPerformed
 
-    private void txtAlergiasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAlergiasFocusGained
-        if(txtAlergias.getText().equals("Ninguna")){
-            txtAlergias.setText("");
-            txtAlergias.setForeground(Color.BLACK);
-        }  
-    }//GEN-LAST:event_txtAlergiasFocusGained
-
-    private void txtAlergiasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAlergiasFocusLost
-        if(txtAlergias.getText().equals("")){
-            txtAlergias.setText("Ninguna");
-            txtAlergias.setForeground(new java.awt.Color(153,153,153));
-        }
-    }//GEN-LAST:event_txtAlergiasFocusLost
-
     private void txtEstaturaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtEstaturaFocusGained
         if(txtEstatura.getText().equals("1.83")){
             txtEstatura.setText("");
@@ -590,12 +581,6 @@ public class CompletarInfo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cboTipoSangreMouseEntered
 
-    private void txtAlergiasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAlergiasMouseEntered
-        if (!isMuted) {
-            new Funciones().audio("alergias");
-        }
-    }//GEN-LAST:event_txtAlergiasMouseEntered
-
     private void txtEstaturaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtEstaturaMouseEntered
         if (!isMuted) {
             new Funciones().audio("estatura");
@@ -607,6 +592,26 @@ public class CompletarInfo extends javax.swing.JFrame {
             new Funciones().audio("peso");
         }
     }//GEN-LAST:event_txtPesoMouseEntered
+
+    private void txtAlergiasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAlergiasFocusGained
+        if(txtAlergias.getText().equals("Ninguna")){
+            txtAlergias.setText("");
+            txtAlergias.setForeground(Color.BLACK);
+        }  
+    }//GEN-LAST:event_txtAlergiasFocusGained
+
+    private void txtAlergiasFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAlergiasFocusLost
+        if(txtAlergias.getText().equals("")){
+            txtAlergias.setText("Ninguna");
+            txtAlergias.setForeground(new java.awt.Color(153,153,153));
+        }
+    }//GEN-LAST:event_txtAlergiasFocusLost
+
+    private void txtAlergiasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAlergiasMouseEntered
+        if (!isMuted) {
+            new Funciones().audio("alergias");
+        }
+    }//GEN-LAST:event_txtAlergiasMouseEntered
 
     /**
      * @param args the command line arguments
@@ -654,7 +659,8 @@ public class CompletarInfo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtAlergias;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtAlergias;
     private javax.swing.JTextField txtEstatura;
     private javax.swing.JTextField txtPeso;
     // End of variables declaration//GEN-END:variables
