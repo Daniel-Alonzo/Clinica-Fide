@@ -229,13 +229,18 @@ public class Registrar extends javax.swing.JFrame {
         jLabel1.setText("*Nombre completo:");
 
         txtNombre.setForeground(new java.awt.Color(153, 153, 153));
-        txtNombre.setText("Luis Raga Reyes");
+        txtNombre.setText("Daniel Alonzo");
         txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtNombreFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtNombreFocusLost(evt);
+            }
+        });
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
             }
         });
 
@@ -251,13 +256,18 @@ public class Registrar extends javax.swing.JFrame {
         jLabel4.setText("*Usuario:");
 
         txtUsuario.setForeground(new java.awt.Color(153, 153, 153));
-        txtUsuario.setText("LRRAGA");
+        txtUsuario.setText("Dany");
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusLost(evt);
+            }
+        });
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
             }
         });
 
@@ -313,6 +323,7 @@ public class Registrar extends javax.swing.JFrame {
             }
         });
 
+        txtFecha.setToolTipText("");
         txtFecha.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 txtFechaPropertyChange(evt);
@@ -415,6 +426,9 @@ public class Registrar extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        txtFecha.getAccessibleContext().setAccessibleName("");
+        txtFecha.getAccessibleContext().setAccessibleDescription("");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -516,13 +530,13 @@ public class Registrar extends javax.swing.JFrame {
 
     private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
         if(txtUsuario.getText().equals("")){
-            txtUsuario.setText("LRRAGA");
+            txtUsuario.setText("Dany");
             txtUsuario.setForeground(new java.awt.Color(153,153,153));
         }
     }//GEN-LAST:event_txtUsuarioFocusLost
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
-        if(txtUsuario.getText().equals("LRRAGA")){
+        if(txtUsuario.getText().equals("Dany")){
             txtUsuario.setText("");
             txtUsuario.setForeground(Color.BLACK);
         }
@@ -530,13 +544,13 @@ public class Registrar extends javax.swing.JFrame {
 
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         if(txtNombre.getText().equals("")){
-            txtNombre.setText("Luis Raga Reyes");
+            txtNombre.setText("Daniel Alonzo");
             txtNombre.setForeground(new java.awt.Color(153,153,153));
         }
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-        if(txtNombre.getText().equals("Luis Raga Reyes")){
+        if(txtNombre.getText().equals("")){
             txtNombre.setText("");
             txtNombre.setForeground(Color.BLACK);
         }
@@ -564,6 +578,14 @@ public class Registrar extends javax.swing.JFrame {
             new Funciones().audio("contraseña");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_txtContraMouseEntered
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
 
 
     /**
