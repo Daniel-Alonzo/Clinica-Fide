@@ -257,6 +257,11 @@ public class GenerarCita extends javax.swing.JFrame {
         txtSintomas.setRows(5);
         txtSintomas.setToolTipText("Ingrese los síntomas");
         txtSintomas.setWrapStyleWord(true);
+        txtSintomas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                txtSintomasMouseEntered(evt);
+            }
+        });
         jScrollPane3.setViewportView(txtSintomas);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -485,6 +490,12 @@ public class GenerarCita extends javax.swing.JFrame {
             new Funciones().audio("cerrar_sesion");
         }
     }//GEN-LAST:event_btnCerrarSesionMouseEntered
+
+    private void txtSintomasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSintomasMouseEntered
+        if (!isMuted) {
+            new Funciones().audio("sintomas");
+        }
+    }//GEN-LAST:event_txtSintomasMouseEntered
 
     /**
      * @param args the command line arguments
