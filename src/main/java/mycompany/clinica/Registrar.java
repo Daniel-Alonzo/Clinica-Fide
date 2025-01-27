@@ -550,7 +550,7 @@ public class Registrar extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreFocusLost
 
     private void txtNombreFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusGained
-        if(txtNombre.getText().equals("")){
+        if(txtNombre.getText().equals("Daniel Alonzo")){
             txtNombre.setText("");
             txtNombre.setForeground(Color.BLACK);
         }
