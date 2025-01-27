@@ -203,7 +203,7 @@ public class InicioSesion extends javax.swing.JFrame {
         jLabel2.setText("Usuario:");
 
         txtUsuario.setForeground(new java.awt.Color(153, 153, 153));
-        txtUsuario.setText("Enter Username");
+        txtUsuario.setText("Ingresar usuario");
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusGained(evt);
@@ -418,7 +418,7 @@ public class InicioSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInicioSesionActionPerformed
 
     private void txtUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusGained
-        if(txtUsuario.getText().equals("Enter Username")){
+        if(txtUsuario.getText().equals("Ingresar usuario")){
             txtUsuario.setText("");
             txtUsuario.setForeground(Color.BLACK);
         }      
@@ -426,7 +426,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void txtUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsuarioFocusLost
         if(txtUsuario.getText().equals("")){
-            txtUsuario.setText("Enter Username");
+            txtUsuario.setText("Ingresar usuario");
             txtUsuario.setForeground(new java.awt.Color(153,153,153));
         }
     }//GEN-LAST:event_txtUsuarioFocusLost
